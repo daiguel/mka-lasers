@@ -118,10 +118,11 @@ function Laser.new(originPoint, targetPoints, options)
         while active do
           if visible then
             drawLaser(originPoint, destination, r, g, b, a)
+          end
             if onPlayerHitCb then
               self._onPlayerHitTest(originPoint, destination)
             end
-          end
+          
           Wait(0)
         end
       end)
