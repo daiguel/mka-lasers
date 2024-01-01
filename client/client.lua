@@ -119,9 +119,9 @@ function Laser.new(originPoint, targetPoints, options)
           if visible then
             drawLaser(originPoint, destination, r, g, b, a)
           end
-            if onPlayerHitCb then
-              self._onPlayerHitTest(originPoint, destination)
-            end
+          if onPlayerHitCb then
+            self._onPlayerHitTest(originPoint, destination)
+          end
           
           Wait(0)
         end
@@ -143,15 +143,15 @@ function Laser.new(originPoint, targetPoints, options)
           local toPoint = targetPoints[toIndex]
           local currentPoint = calculateCurrentPoint(fromPoint, toPoint, deltaTime, currentTravelTime)
           local currentDirection = norm(currentPoint - originPoint)
+          local destination = currentPoint
           if visible then
-            local destination = currentPoint
             if extensionEnabled then
               destination = originPoint + currentDirection * maxDistance
             end
             drawLaser(originPoint, destination, r, g, b, a)
-            if onPlayerHitCb then
-              self._onPlayerHitTest(originPoint, destination)
-            end
+          end
+          if onPlayerHitCb then
+            self._onPlayerHitTest(originPoint, destination)
           end
           if moving and not waiting then
             if #(toPoint - currentPoint) < 0.001 then
